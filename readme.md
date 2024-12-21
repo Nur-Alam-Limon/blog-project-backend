@@ -1,5 +1,14 @@
 # Blog API Project
 
+### Live Link  
+[https://blog-project-pied-eight.vercel.app/](https://blog-project-pied-eight.vercel.app/)
+
+### Admin Info  
+- **Email**: admin@example.com  
+- **Password**: admin123  
+
+---
+
 ## Overview
 This project is a backend implementation for a blogging platform. Users can create, read, update, and delete blogs, while an admin has elevated privileges to manage users and their blogs. The backend ensures secure authentication, role-based access control, and public access to blogs with search, sort, and filter functionalities.
 

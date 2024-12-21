@@ -1,6 +1,6 @@
 import { Router } from "express";
 import * as blogController from "./blog.controller";
-import authMiddleware from "../../middleware/auth.middleware";
+import { verifyUser } from "../../middleware/auth.middleware";
 import validate from "../../middleware/validate.middleware";
 import { createBlogSchema, updateBlogSchema } from "./blog.validation";
 
@@ -9,7 +9,7 @@ const router = Router();
 // Create a new blog - Authenticated users only
 router.post(
   "/",
-  authMiddleware.verifyUser,
+  verifyUser,
   validate(createBlogSchema),
   blogController.create
 );
@@ -21,14 +21,14 @@ router.get("/", blogController.getAll);
 router.get("/:id", blogController.getById);
 
 // Update a blog by ID - Authenticated users only, with validation
-router.put(
+router.patch(
   "/:id",
-  authMiddleware.verifyUser,
+  verifyUser,
   validate(updateBlogSchema),
   blogController.update
 );
 
 // Delete a blog by ID - Authenticated users only
-router.delete("/:id", authMiddleware.verifyUser, blogController.deleteBlog);
+router.delete("/:id", verifyUser, blogController.deleteBlog);
 
 export default router;

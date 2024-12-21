@@ -4,7 +4,7 @@ import cors from 'cors';
 
 // Import routes for authentication, user, blog, etc.
 import authRoutes from './app/modules/auth/auth.routes';
-import userRoutes from './app/modules/user/user.routes';
+import adminRoutes from './app/modules/admin/admin.routes';
 import blogRoutes from './app/modules/blog/blog.routes';
 
 // Create app using express
@@ -30,7 +30,7 @@ app.get('/', (req: Request, res: Response) => {
 
 // API routes
 app.use('/api/auth', authRoutes);  // Auth routes (login, register)
-app.use('/api/users', userRoutes); // User routes (create, update, delete)
+app.use('/api/admin', adminRoutes); // User routes (create, update, delete)
 app.use('/api/blogs', blogRoutes); // Blog routes (CRUD operations)
 
 export default app;

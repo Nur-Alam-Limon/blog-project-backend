@@ -1,6 +1,6 @@
 import { Router } from "express";
 import * as blogController from "./blog.controller";
-import { verifyUser } from "../../middleware/auth.middleware";
+import { verifyNonAdmin, verifyUser } from "../../middleware/auth.middleware";
 import validate from "../../middleware/validate.middleware";
 import { createBlogSchema, updateBlogSchema } from "./blog.validation";
 
@@ -23,7 +23,7 @@ router.get("/:id", blogController.getById);
 // Update a blog by ID - Authenticated users only, with validation
 router.patch(
   "/:id",
-  verifyUser,
+  verifyNonAdmin,
   validate(updateBlogSchema),
   blogController.update
 );

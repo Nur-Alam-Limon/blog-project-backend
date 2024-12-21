@@ -19,6 +19,17 @@ const verifyUser = async (req: Request, res: Response, next: NextFunction): Prom
   }
 };
 
+const verifyNonAdmin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  await verifyUser(req, res, () => {
+    if (req.user?.role === "admin") {
+      res.status(403).json({ message: "Admins are not allowed to perform this action" });
+      return;
+    }
+    next();
+  });
+};
+
+
 // Middleware to verify admin
 const verifyAdmin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   await verifyUser(req, res, () => {
@@ -30,4 +41,4 @@ const verifyAdmin = async (req: Request, res: Response, next: NextFunction): Pro
   });
 };
 
-export { verifyUser, verifyAdmin };
+export { verifyUser, verifyAdmin, verifyNonAdmin };
